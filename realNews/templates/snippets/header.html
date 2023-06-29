@@ -28,8 +28,10 @@ integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xX
             <div class="d-flex justify-content-between">
                 <div class="bg-primary text-white text-center py-2" style="width: 100px;">Trending</div>
                 <div class="owl-carousel owl-carousel-1 trending-carousel position-relative d-inline-flex align-items-center ml-3" style="width: calc(100% - 100px); padding-left: 90px;">
+                    <!--
                     <div class="text-truncate"><a class="text-secondary" href="">Labore sit justo amet eos sed, et sanctus dolor diam eos</a></div>
                     <div class="text-truncate"><a class="text-secondary" href="">Gubergren elitr amet eirmod et lorem diam elitr, ut est erat Gubergren elitr amet eirmod et lorem diam elitr, ut est erat</a></div>
+                    -->
                 </div>
             </div>
         </div>
@@ -39,7 +41,7 @@ integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xX
     <div class="row align-items-center py-2 px-lg-5">
         <div class="col-lg-4">
             <a href="" class="navbar-brand d-none d-lg-block">
-                <h1 class="m-0 display-5 text-uppercase"><span class="text-primary" style="align-items-left">Real Time News</span></h1>
+                <h1 class="m-0 display-5 text-uppercase m-auto"><span class="text-primary" style="align-items-left">Real Time News</span></h1>
             </a>
         </div>
     </div>
@@ -55,9 +57,10 @@ integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xX
     </h5>
     <nav class="my-2 my-md-0 mr-md-3">
         {% if request.user.is_authenticated %}
-            <a class="p-2 text-dark" href="{% url 'homepage' %}">Homepage</a>
+            <!--<a class="p-2 text-dark" href="{% url 'homepage' %}">Homepage</a>-->
             <a class="p-2 text-dark" href="{% url 'account' %}">Account</a>
-            <a class="p-2 text-dark" href="{% url 'logout' %}">logout</a></p>
+            <a class="p-2 text-dark" href="{% url 'logout' %}">logout</a>
+           
         {% else %}
             <a href="{% url 'homepage' %}">Homepage</a>
             <a href="{% url 'login' %}">Login</a>
@@ -67,3 +70,51 @@ integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xX
     </nav>
   </div>
   <!--End Header tag-->
+
+<!--Body tag-->
+<div class="container-fluid p-0 mb-3">
+    <nav class="navbar navbar-expand-lg bg-light navbar-light py-2 py-lg-0 px-lg-5">
+       
+        <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
+            <div class="navbar-nav mr-auto py-0">
+                <a href="index.html" class="nav-item nav-link">Home</a>
+                <a class="nav-item nav-link" href="{% url 'homepage' %}">Homepage</a>
+                <a href="articles" class="nav-item nav-link active">Articles</a>
+                <a href="single.html" class="nav-item nav-link">Single News</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="#" class="dropdown-item">Menu item 1</a>
+                        <a href="#" class="dropdown-item">Menu item 2</a>
+                        <a href="#" class="dropdown-item">Menu item 3</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+            </div>
+            <div class="input-group ml-auto" style="width: 100%; max-width: 300px;">
+                <input type="text" class="form-control" placeholder="Keyword">
+                <div class="input-group-append">
+                    <button class="input-group-text text-secondary"><i
+                            class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- Navbar End -->
+
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    <div class="container">
+        <nav class="breadcrumb bg-transparent m-0 p-0">
+            <a class="breadcrumb-item" href="#">Homepage</a>
+            <a class="breadcrumb-item" href="#">Article</a>
+            <span class="breadcrumb-item active">Technology</span>
+        </nav>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- News With Sidebar Start -->
+
+<!-- News With Sidebar End -->

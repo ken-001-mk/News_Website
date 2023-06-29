@@ -36,4 +36,23 @@ def pre_save_article_receiver(sender, instance, *args, **kwargs):
         instance.slug=slugify(instance.author.username + "-" + instance.title)
 
 pre_save.connect(pre_save_article_receiver, sender=Article)
-        
+
+class Comment(models.Model):
+    article=models.ForeignKey(Article, on_delete=models.CASCADE)
+    name=models.CharField(max_length=100)
+    email=models.CharField(max_length=100)
+    comment=models.TextField()
+    status=models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.comment
+    
+class Category(models.Model):
+    title=models.CharField(max_length=100)
+    category_image=models.ImageField(upload_to='img/')
+    
+    class meta:
+        verbose_name_plural='Categories'
+    
+    def __str__(self):
+        return self.title       

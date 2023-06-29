@@ -1,21 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">Real Times News</h1>
-    <p class="lead">Welcome to real time news where we deliver the latest news that are concise, real and authentic.</p>
-  </div>
+
+
 <div class="container">
     <div class="d-flex flex-column">
-        <div class="p-2">
-            <h3>Latest News:</h3>
-        </div>
-        <div class="p-2">
-            <h3>Registered Users:</h3>
-            {% for account in accounts %}
-                <p>{{ account }}</p>
-            {% endfor%}
-        </div>
     </div>
 </div>
 {% endblock %}
