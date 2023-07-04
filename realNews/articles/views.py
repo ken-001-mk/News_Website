@@ -9,7 +9,7 @@ def Article_view(request):
     articles = Article.objects.all()
     context['articles'] = articles
     
-    return redirect('homepage')
+    #return redirect('homepage')
     
     
     return render(request, 'articles/article.html', context)
