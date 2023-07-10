@@ -1,5 +1,1 @@
 web: gunicorn realNews.wsgi
-worker: manage.py 127.0.0.1:8000
-web: gunicorn account:app
-web: gunicorn articles:app
-web:gunicorn newsApp.app

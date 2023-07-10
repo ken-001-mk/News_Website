@@ -2,11 +2,20 @@ from django.db import models
 
 from django.db.models.signals import pre_save, post_delete
 from django.utils.text import slugify
+from django.utils import timezone
 from django.conf import settings
 from django.dispatch import receiver
-
+from tinymce.models import HTMLField
+from django.template.defaultfilters import slugify
+import os
 
 def upload_location(instance, filename, **kwargs):
+    if instance:
+        return 'articles/{author_id}/{image}-{filename}'.format(
+            author_id=str(instance.author.id), image=str(instance.title), filename=filename
+        )
+        return instance.slug
+    
     file_path = 'articles/{author_id}/{title}-{filename}'.format(
         author_id=str(instance.author.id), title=str(instance.title), filename=filename
     )
@@ -14,12 +23,17 @@ def upload_location(instance, filename, **kwargs):
 
 class Article(models.Model):
     title=models.CharField(max_length=300, null=False, blank=False)
-    body = models.TextField(max_length=5000, null=False, blank=False)
+    subtitle=models.CharField(max_length=300, null=False, blank=False)
+    body=HTMLField(default="", blank=True)
+    notes=HTMLField(default="", blank=True)
     image=models.ImageField(upload_to=upload_location, null=False, blank=False)
     date_published=models.DateTimeField(auto_now_add=True, verbose_name="date published")
     date_updated=models.DateTimeField(auto_now=True, verbose_name="date updated")
     author=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     slug = models.SlugField(blank=True, unique=True)
+    category=models.ForeignKey('Category', on_delete=models.SET_DEFAULT, default='')
+ 
+        
     
     class meta:
         verbose_name_plural='Articles'
@@ -48,8 +62,11 @@ class Comment(models.Model):
         return self.comment
     
 class Category(models.Model):
-    title=models.CharField(max_length=100)
-    category_image=models.ImageField(upload_to='img/')
+    title=models.CharField(max_length=300)
+    subtittle=models.CharField(max_length=300, default='', blank=True)
+    slug=models.SlugField(blank=True, unique=True)
+    date_published=models.DateTimeField(verbose_name="date published", default=timezone.now)
+    #category_image=models.ImageField(upload_to='img/')
     
     class meta:
         verbose_name_plural='Categories'

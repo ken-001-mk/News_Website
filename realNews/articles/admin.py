@@ -6,7 +6,13 @@ admin.site.register(Category)
 admin.site.register(Comment)
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug')
+    #list_display = ('name', 'slug', 'created_on',)
+    #list_filter = ('name', 'slug', 'created_on',)
+    fields = [
+        'title',
+        'subtitle',
+        'slug',
+    ]
     
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'body', 'created_on', 'active')
@@ -18,10 +24,15 @@ class CommentAdmin(admin.ModelAdmin):
         queryset.update(active=True)
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'author', 'publish', 'status')
-    list_filter = ('status', 'created', 'publish', 'author', 'id')
-    search_fields = ('title', 'body')
-    prepopulated_fields = {'slug': ('title',)}
-    raw_id_fields = ('author',)
-    date_hierarchy = 'publish'
-    ordering = ('status', 'publish')
+    #list_display = ('title', 'slug', 'author', 'publish', 'status')
+    #list_filter = ('status', 'created', 'publish', 'author', 'id')
+    #search_fields = ('title', 'body')
+    #prepopulated_fields = {'slug': ('title',)}
+    #raw_id_fields = ('author',)
+    #date_hierarchy = 'publish'
+    #ordering = ('status', 'publish')
+    fieldsets = [
+        ("Header", {'fields': ['title', 'subtitle', 'slug', 'category']}),
+        ("Body", {'fields': ['body', 'notes']}),
+        ("Date", {'fields': ['publish', 'updated']})
+    ]
